@@ -34,7 +34,7 @@ async function makeRequest(i) {
 async function stressTest() {
     console.log(`Iniciando teste de estresse: ${REQUESTS_PER_BATCH * TOTAL_BATCHES} requisições...`);
 
-    const startTime = Date.now(); // Inicia o contador de tempo
+    const startTime = Date.now();
 
     for (let batch = 0; batch < TOTAL_BATCHES; batch++) {
         console.log(`Executando lote ${batch + 1}...`);
@@ -44,11 +44,11 @@ async function stressTest() {
             requests.push(makeRequest(batch * REQUESTS_PER_BATCH + i));
         }
 
-        await Promise.all(requests); // Executa todas as requisições do lote simultaneamente
+        await Promise.all(requests);
     }
 
-    const endTime = Date.now(); // Finaliza o contador de tempo
-    const totalTime = (endTime - startTime) / 1000; // Converte para segundos
+    const endTime = Date.now();
+    const totalTime = (endTime - startTime) / 1000;
     const totalRequests = successCount + failureCount;
     const successRate = totalRequests > 0 ? (successCount / totalRequests) * 100 : 0;
 
